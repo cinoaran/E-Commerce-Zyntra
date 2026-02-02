@@ -1,151 +1,64 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme {
+  --font-display: "Montserrat", sans-serif;
+  --font-sans: "Open Sans", sans-serif;
+  --font-decor: "Comfortaa", sans-serif;
+  --radius: 0.625rem;
+}
+
+/* ZYNTRA E-COMMERCE – OKLCH DESIGN SYSTEM */
 @custom-variant dark (&:is(.dark *));
 
-/* =============================================================================
-   ZYNTRA DESIGN SYSTEM – OKLCH COLORS + BESCHREIBUNGEN
-   E-Commerce optimiert | Dark/Light | 2026 Standard
-============================================================================= */
-
 :root {
-  /* SHAPE SYSTEM */
-  --radius: 0.625rem; /* Konsistente Rundung überall */
+  /* Core */
+  --background: oklch(100% 0 0);
+  --foreground: oklch(20% 0 0);
 
-  /* GRADIENT SYSTEM – Hero Backgrounds */
-  --gradient-start: oklch(100% 0.00011 271.152); /* Subtiler Lila-Start */
-  --gradient-end: oklch(98.595% 0.00407 285.919); /* Blauer Übergang */
+  /* Primary (Buttons, Logo) */
+  --primary: oklch(62% 0.15 260);
+  --primary-foreground: oklch(100% 0 0);
 
-  /* CONTENT LAYER – Light Mode */
-  --card: oklch(1 0 0); /* Weiß – Produkt Cards */
-  --card-foreground: oklch(0.145 0 0); /* Dunkel – Text ON Cards */
-  --popover: oklch(1 0 0); /* Weiß – Dropdowns, Modals */
+  /* Secondary (Cards, Hover) */
+  --secondary: oklch(96% 0.02 240);
+  --secondary-foreground: oklch(25% 0 0);
 
-  /* PRIMARY SYSTEM – HAUPT CTA */
-  --primary: oklch(0.205 0 0); /* Dunkelblau – Buttons, Links */
-  --primary-foreground: oklch(0.985 0 0); /* Weiß – Text ON Primary */
+  /* Product Cards */
+  --card: oklch(99% 0.01 240);
+  --card-foreground: oklch(22% 0 0);
 
-  /* SECONDARY SYSTEM – CONTENT HIERARCHIE */
-  --secondary: oklch(0.97 0 0); /* Hellgrau – Secondary Buttons, Cards */
-  --secondary-foreground: oklch(0.205 0 0); /* Dunkel – Text ON Secondary */
+  /* Muted/Text */
+  --muted: oklch(97% 0.01 240);
+  --muted-foreground: oklch(45% 0 0);
 
-  /* MUTED SYSTEM – DE-EMPHASIS */
-  --muted: oklch(0.97 0 0); /* Hellgrau – Background Fills */
-  --muted-foreground: oklch(0.556 0 0); /* Mittelgrau – Subtext, Labels */
+  /* Forms/Border */
+  --border: oklch(94% 0.01 240);
+  --input: oklch(94% 0.01 240);
+  --ring: oklch(65% 0.2 260);
 
-  /* ACCENT SYSTEM – HIGHLIGHTS */
-  --accent: oklch(0.97 0 0); /* Hellgrau – Hover States */
-  --accent-foreground: oklch(0.205 0 0); /* Dunkel – Text ON Accent */
+  /* Destructive */
+  --destructive: oklch(58% 0.2 20);
+  --destructive-foreground: oklch(100% 0 0);
 
-  /* DESTRUCTIVE – Error, Delete */
-  --destructive: oklch(0.577 0.245 27.325); /* Rot-Orange – Danger */
-
-  /* FUNCTIONAL LAYER */
-  --border: oklch(0.922 0 0); /* Subtiler Rand */
-  --input: oklch(0.922 0 0); /* Input Backgrounds */
-  --ring: oklch(0.708 0 0); /* Focus Rings */
-
-  /* CHARTS – Analytics Dashboard */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-
-  /* BASE LAYER – Light Mode */ /* Weiß – Hauptbackground */ /* Dunkel – Haupttext */ --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --popover-foreground: oklch(0.145 0 0); --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0);
+  color-scheme: light;
 }
 
 .dark {
-  /* DARK MODE – GRADIENT HERO */
-  --background: oklch(0.145 0 0); /* Dunkel – Hauptbackground */
-  --gradient-start: oklch(76.147% 0.00914 308.003);
-  --gradient-end: oklch(35.177% 0.0195 315.744);
-  --foreground: oklch(0.985 0 0); /* Hell – Haupttext */
-
-  /* CONTENT LAYER – Dark Mode */
-  --card: oklch(0.205 0 0); /* Dunkelgrau – Cards */
-  --card-foreground: oklch(0.985 0 0); /* Weiß – Text ON Cards */
-
-  /* PRIMARY – Dark Mode (umgekehrt) */
-  --primary: oklch(0.922 0 0); /* Hellblau – Buttons */
-  --primary-foreground: oklch(0.205 0 0); /* Dunkel – Text ON Primary */
-
-  /* SECONDARY – Dark Mode */
-  --secondary: oklch(0.269 0 0); /* Dunkler – Secondary Elements */
-  --secondary-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-/* TAILWIND THEME MAPPING */
-@theme inline {
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  /* ... rest unverändert */
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  --background: oklch(18% 0.02 240);
+  --foreground: oklch(98% 0 0);
+  --primary: oklch(75% 0.12 260);
+  --primary-foreground: oklch(18% 0 0);
+  --secondary: oklch(22% 0.02 240);
+  --secondary-foreground: oklch(98% 0 0);
+  --card: oklch(22% 0.01 240);
+  --card-foreground: oklch(98% 0 0);
+  --muted: oklch(25% 0.01 240);
+  --muted-foreground: oklch(75% 0 0);
+  --border: oklch(28% 0.01 240);
+  --input: oklch(28% 0.01 240);
+  --ring: oklch(48% 0.18 260);
+  --destructive: oklch(52% 0.15 20);
+  --destructive-foreground: oklch(98% 0 0);
+  color-scheme: dark;
 }
