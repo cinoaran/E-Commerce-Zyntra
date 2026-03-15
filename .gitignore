@@ -44,4 +44,9 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Textdateien, die mit .txt enden
 .txt*
+
+#CHANGES.md
+CHANGES.md
