@@ -1,7 +1,7 @@
 "use server";
 
 import {revalidatePath} from "next/cache";
-import {auth} from "@/lib/auth";
+import {getSessionOnce} from "@/lib/sessionCache";
 import prisma from "@/lib/prisma";
 import {utapi} from "../../../uploadthing/server";
 import {headers} from "next/headers";
@@ -15,9 +15,7 @@ import {headers} from "next/headers";
  *               - If `data.url` is `null`, the existing image will be deleted.
  */
 export async function avatar(data: {url: string | null}) {
-  const session = await auth.api.getSession({
-    headers: await headers(), // you need to pass the headers object.
-  });
+  const session = await getSessionOnce({headers: await headers()});
   if (!session?.user?.id) {
     return {error: "Unauthorized"};
   }

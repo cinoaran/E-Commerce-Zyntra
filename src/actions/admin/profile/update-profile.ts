@@ -1,9 +1,9 @@
 "use server";
-import {prisma} from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import {z} from "zod";
-import {ProfileSchema} from "@/schemas/ProfileSchema";
-import {auth} from "@/lib/auth";
+import {ProfileSchema} from "@/zod-schemas/ProfileSchema";
 import {headers} from "next/headers";
+import {getSessionOnce} from "@/lib/sessionCache";
 
 export async function UpdateProfile(data: z.infer<typeof ProfileSchema>) {
   const safeProfile = ProfileSchema.safeParse(data);
@@ -11,9 +11,7 @@ export async function UpdateProfile(data: z.infer<typeof ProfileSchema>) {
     return {error: "Invalid data"};
   }
 
-  const session = await auth.api.getSession({
-    headers: await headers(), // you need to pass the headers object.
-  });
+  const session = await getSessionOnce({headers: await headers()});
 
   if (!session) {
     return {error: "Unauthorized"};
@@ -33,7 +31,7 @@ export async function UpdateProfile(data: z.infer<typeof ProfileSchema>) {
       return {error: "User not found"};
     }
 
-    return {success: "User updated succesfully"};
+    return {success: "User updated successfully"};
   } catch (error) {
     console.log(error);
     return {error: "Something went wrong"};

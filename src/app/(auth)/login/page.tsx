@@ -8,34 +8,32 @@ import {
   UserPen,
   MessageSquareMore,
   MailCheck,
+  LogIn,
 } from "lucide-react";
 import Link from "next/link";
 
 const LoginPage = () => {
   return (
-    <div className="w-[90vw] md:w-1/2 bg-secondary text-foreground border-[0.3px] border-foreground/10 rounded-lg backdrop-blur-md shadow-md shadow-foreground/10 mx-auto my-12">
-      <div className="flex items-center justify-center flex-col border-b-2 border-foreground/5 md:px-5 pb-10">
-        <h5 className="flex items-center justify-center text-center uppercase py-10">
-          Login to your account.
-        </h5>
-        <ul className="flex flex-col items-center md:flex-row gap-10">
-          <li className="flex flex-col md:flex-row items-center justify-center text-center gap-2">
-            <span className="icon p-2">
-              <MailCheck size={22} />
-            </span>
-            Secure login with email verify
+    <div className="w-[90vw] sm:w-3/4 bg-background text-foreground border-[0.3px] border-foreground/10 rounded-lg backdrop-blur-md shadow-md shadow-foreground/10 mx-auto my-12">
+      <div className="flex items-center justify-center flex-col border-b-2 border-foreground/5 md:px-5 py-12 gap-10">
+        <h2 className="flex items-center justify-center text-center uppercase font-semibold gap-4">
+          <span>
+            <LogIn size={36} className="text-primary" />
+          </span>
+          Login.
+        </h2>
+        <ul className="flex flex-col items-center xl:flex-row gap-8">
+          <li className="flex flex-row items-center justify-center text-center gap-3 uppercase">
+            <UserCheck size={18} className="text-primary" />
+            Get access to your data
           </li>
-          <li className="flex flex-col md:flex-row items-center justify-center text-center gap-2">
-            <span className="icon p-2">
-              <UserCheck size={22} />
-            </span>
-            Access to your profile
+          <li className="flex flex-row items-center justify-center text-center gap-3 uppercase">
+            <TvMinimal size={18} className="text-primary" />
+            Listings of your history
           </li>
-          <li className="flex flex-col md:flex-row items-center justify-center text-center gap-2">
-            <span className="icon p-2">
-              <TvMinimal size={22} />
-            </span>
-            Listings of your shopping history
+          <li className="flex flex-row items-center justify-center text-center gap-3 uppercase">
+            <MailCheck size={18} className="text-primary" />
+            With email verification
           </li>
         </ul>
       </div>

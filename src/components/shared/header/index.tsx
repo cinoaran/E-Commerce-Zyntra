@@ -2,15 +2,13 @@ import {APP_NAME, APP_NAME_SECOND} from "@/constants";
 import Link from "next/link";
 import React from "react";
 import {SheetNavigation} from "@/components/shared/sheet";
-import {auth} from "@/lib/auth";
+import {getSessionOnce} from "@/lib/sessionCache";
 
 import {ModeToggle} from "@/components/shared/mode/ToggleTheme";
 import SearchInput from "@/components/shared/searchInput";
 import {headers} from "next/headers";
 const Header = async () => {
-  const rawSession = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const rawSession = await getSessionOnce({headers: await headers()});
 
   const session = rawSession
     ? {
@@ -23,8 +21,7 @@ const Header = async () => {
     : null;
 
   return (
-    <header className="relative md:sticky top-0 bg-header mx-auto space-y-6 pb-5 md:space-y-0 px-8 border-b-[0.3px] border-b-foreground/10 backdrop-blur-lg z-50">
-      <ModeToggle />
+    <header className="relative md:sticky top-0 mx-auto space-y-6 pb-5 md:space-y-0 px-8 border-b-[0.3px] border-b-foreground/10 backdrop-blur-lg z-50">
       <nav className="flex flex-col md:flex-row items-center justify-center md:justify-between md:gap-1 gap-1 h-auto">
         <Link
           href="/"
@@ -41,7 +38,8 @@ const Header = async () => {
         <div className="w-full md:w-1/2 my-5">
           <SearchInput />
         </div>
-        <div className="flex items-center justify-center gap-1">
+        <div className="flex items-center justify-center gap-4">
+          <ModeToggle />
           <SheetNavigation session={session} />
         </div>
       </nav>

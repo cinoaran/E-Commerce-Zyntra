@@ -1,20 +1,18 @@
 "use client";
-import {MessageSquareMore, MoveLeft} from "lucide-react";
+import {MessageSquareMore, MoveLeft, TimerReset} from "lucide-react";
 import Link from "next/link";
 import PasswordForm from "../_components/reset/PasswordForm";
 
 const ResetPasswordPage = () => {
   return (
-    <div className="w-[90%] md:w-3/4 bg-secondary text-foreground px-5 border-[0.3px] border-foreground/10 rounded-lg backdrop-blur-md shadow-md shadow-foreground/10 mx-auto font-roboto font-thin my-10">
+    <div className="w-[90%] md:w-3/4 bg-background text-foreground px-5 border-[0.3px] border-foreground/10 rounded-lg backdrop-blur-md shadow-md shadow-foreground/10 mx-auto font-roboto font-thin my-10">
       <div className="flex items-center justify-center flex-col border-b-2 border-foreground/5 md:px-5 pb-10">
-        <h5 className="flex items-center justify-center text-center uppercase py-10">
-          Change your password!!
-        </h5>
+        <h3 className="flex items-center justify-center text-center uppercase py-10 gap-4 font-semibold">
+          <TimerReset size={36} className="text-primary" /> Reset your password.
+        </h3>
         <ul className="flex flex-col items-center md:flex-row gap-10">
-          <li className="flex flex-col md:flex-row items-center justify-center text-center gap-2">
-            <span className="icon p-1">
-              <MessageSquareMore size={18} />
-            </span>
+          <li className="flex flex-col md:flex-row items-center justify-center text-center gap-3 uppercase">
+            <MessageSquareMore size={18} className="text-primary" />
             Please enter your new password and confirm !!
           </li>
         </ul>

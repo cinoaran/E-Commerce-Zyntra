@@ -99,7 +99,7 @@ const AvatarImage = ({session: initialSession}: AvatarImageProps) => {
       </h6>
       <div className={`relative max-w-24 max-h-24`}>
         <Image
-          src={imageUrl ?? "/avatar/placeholder-avatar.webp"} // Fallback to a placeholder
+          src={imageUrl ?? "/avatar/placeholder-avatar.svg"} // Fallback to a placeholder
           alt="User Avatar"
           width={0}
           height={0}

@@ -1,0 +1,18 @@
+import {headers} from "next/headers";
+import {redirect} from "next/navigation";
+import {getSessionOnce} from "@/lib/sessionCache";
+
+export default async function OrdersPage() {
+  const hdrs = await headers();
+  const session = await getSessionOnce({headers: hdrs});
+
+  if (!session || !session.user || !session.user.id) redirect("/login");
+  if (session.user.role !== "user") redirect("/");
+
+  return (
+    <div className="p-8">
+      <h1 className="text-2xl font-bold">Your Orders</h1>
+      <p className="mt-4">(Placeholder) You have no orders yet.</p>
+    </div>
+  );
+}

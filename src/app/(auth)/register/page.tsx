@@ -1,35 +1,40 @@
 import Registerform from "../_components/RegisterForm";
-import {UserCheck, TvMinimal, MailCheck, UserPen} from "lucide-react";
+import {
+  UserCheck,
+  TvMinimal,
+  UserPen,
+  MonitorCheckIcon,
+  MailCheckIcon,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 const RegisterPage = () => {
   return (
-    <div className="w-[90vw] md:w-1/2 bg-secondary text-foreground border-[0.3px] border-foreground/10 rounded-lg backdrop-blur-md shadow-md shadow-foreground/10 mx-auto my-12">
-      <div className="flex items-center justify-center flex-col border-b-2 border-foreground/5 md:px-5 pb-10">
-        <h5 className="flex items-center justify-center text-center uppercase py-10">
-          Register your account.
-        </h5>
-        <ul className="flex flex-col items-center md:flex-row gap-10">
-          <li className="flex flex-col md:flex-row items-center justify-center text-center gap-2">
-            <span className="icon p-1">
-              <MailCheck size={22} />
+    <div className="w-[90vw] sm:w-3/4 bg-background text-foreground border-[0.3px] border-foreground/10 rounded-lg backdrop-blur-md shadow-md shadow-foreground/10 mx-auto my-12">
+      <div className="flex items-center justify-center flex-col border-b-2 border-foreground/5 md:px-5 py-12">
+        <div className="flex items-center justify-center flex-col gap-10">
+          <h2 className="flex items-center justify-center text-center uppercase font-semibold gap-4">
+            <span>
+              <MonitorCheckIcon size={36} className="text-primary" />
             </span>
-            Secure login with email verify
-          </li>
-          <li className="flex flex-col md:flex-row items-center justify-center text-center gap-2">
-            <span className="icon p-1">
-              <UserCheck size={22} />
-            </span>
-            Access to your profile
-          </li>
-          <li className="flex flex-col md:flex-row items-center justify-center text-center gap-2">
-            <span className="icon p-1">
-              <TvMinimal size={22} />
-            </span>
-            Listings of your shopping history
-          </li>
-        </ul>
+            Register.
+          </h2>
+          <ul className="flex flex-col items-center xl:flex-row gap-8">
+            <li className="flex flex-row items-center justify-center text-center gap-3 uppercase">
+              <UserCheck size={18} className="text-primary" />
+              Get access to your data
+            </li>
+            <li className="flex flex-row items-center justify-center text-center gap-3 uppercase">
+              <TvMinimal size={18} className="text-primary" />
+              Listings of your history
+            </li>
+            <li className="flex flex-row items-center justify-center text-center gap-3 uppercase">
+              <MailCheckIcon size={18} className="text-primary" />
+              With email verification
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="flex flex-col lg:flex-row items-center justify-center gap-5 mx-auto my-10">
         <div className="flex items-center justify-center w-full h-full md:flex-2 px-2">

@@ -6,6 +6,7 @@ import "./globals.css";
 import {APP_DESCRIPTION, APP_NAME, APP_NAME_SECOND} from "@/constants";
 import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
+import {TooltipProvider} from "@/components/ui/tooltip";
 
 // NEUE Google Fonts als CSS-Variablen
 
@@ -38,7 +39,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html
+      lang="en"
+      suppressHydrationWarning={true}
+      data-scroll-behavior="smooth"
+    >
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -66,22 +71,26 @@ export default function RootLayout({
           href="/web-app-manifest-512x512.png"
         />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#000000" />
+        {/* <meta name="theme-color" content="#000000" /> */}
         <meta name="description" content={APP_DESCRIPTION} />
       </head>
       <body
-        className={`${montserrat.variable} ${openSans.variable} ${comfortaa.variable} antialiased`}
+        className={`${montserrat.variable} ${openSans.variable} ${comfortaa.variable} antialiased bg-background`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <main className={`antialiased flex w-full mx-auto min-h-screen`}>
+          <main
+            className={`antialiased flex w-full mx-auto min-h-screen flex-col`}
+          >
             <SidebarProvider defaultOpen={false}>
-              <div className="relative flex items-center h-20 ">
-                <SidebarTrigger className="absolute right-2 top-2 z-50" />
-              </div>
-              <div className="flex-1">
-                <Header />
-                {children}
-              </div>
+              <TooltipProvider>
+                <div className="relative flex items-center h-20 ">
+                  <SidebarTrigger className="absolute right-2 top-2 z-50" />
+                </div>
+                <div className="flex-1">
+                  <Header />
+                  {children}
+                </div>
+              </TooltipProvider>
             </SidebarProvider>
           </main>
           <Footer />

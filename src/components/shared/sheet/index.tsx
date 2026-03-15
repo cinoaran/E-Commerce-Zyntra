@@ -8,13 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  LayoutDashboardIcon,
-  Menu,
-  PenBoxIcon,
-  User2,
-  UserPlus,
-} from "lucide-react";
+import {LayoutDashboardIcon, Menu, PenBoxIcon, UserPlus} from "lucide-react";
 import Main from "../nav";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {usePathname} from "next/navigation";
@@ -32,55 +26,56 @@ export function SheetNavigation({session}: {session: Session | null}) {
   return (
     <Sheet modal={true} /*open={true}  */>
       <SheetTrigger asChild aria-description="Navigation Trigger">
-        <button
-          className="flex items-center justify-center bg-primary shadow responsive-icon rounded-full border-2 border-primary-foreground hover:border-primary-foreground/10 hover:bg-transparent transition-colors duration-200 ease-in-out cursor-pointer z-10"
+        <div
+          className="flex items-center justify-center icon ring-1 transition-colors duration-200 ease-in-out cursor-pointer z-10"
           aria-label="Open Navigation"
         >
           {userLoggedIn ? (
-            <Avatar className="flex items-center justify-center bg-primary hover:bg-primary/30 ring-1 ring-white responsive-icon z-10 w-12 h-12">
+            <Avatar
+              size="lg"
+              className="flex items-center justify-center transition-colors duration-200 ease-in-out cursor-pointer z-10"
+            >
               <AvatarImage
-                src={user?.image || "/avatar/placeholder-avatar.webp"}
+                src={user?.image || "/avatar/placeholder-avatar.svg"}
                 alt="User profile image"
-                className="w-11 h-11"
+                className="aspect-square object-cover hover:scale-95"
                 aria-roledescription="Avatar image"
               />
+
               <AvatarFallback>
-                <p
-                  className="flex items-center justify-center text-white"
-                  title="User Icon"
-                >
-                  <User2
-                    size={22}
-                    className="rounded-full hover:text-sheet-foreground/70 transition-colors duration-200 ease-in-out"
-                  />
-                  <span className="sr-only">User Icon</span>
-                </p>
+                <AvatarImage
+                  src="/avatar/placeholder-avatar.svg"
+                  alt="Placeholder Avatar"
+                  className="aspect-square object-cover hover:scale-95"
+                  width={40}
+                  height={40}
+                />
               </AvatarFallback>
               <span className="sr-only">User Image</span>
             </Avatar>
           ) : (
-            <Menu strokeWidth={2} className="text-white" />
+            <Menu strokeWidth={2} className="size-5 hover:scale-95" />
           )}
-        </button>
+        </div>
       </SheetTrigger>
       <SheetContent
         aria-description="Navigation Slider"
         side="right"
-        className="bg-background/10 backdrop-blur-xl border-sheet-border/30 shadow-md max-h-screen overflow-y-auto text-sheet-foreground"
+        className="bg-sheet/80 backdrop-blur-xl border-sheet-border/30 shadow-md max-h-screen overflow-y-auto text-sheet-foreground"
       >
-        <SheetHeader className="flex flex-col items-center justify-center gap-3 my-3 border-b border-sheet-foreground/30">
+        <SheetHeader className="flex flex-col items-center justify-center gap-3 my-5 border-b border-sheet-foreground/30">
           <SheetTitle
             asChild
-            className="flex items-center justify-center gap-1 uppercase text-sheet-foreground"
+            className="flex items-center justify-center gap-1 uppercase text-sheet-foreground pt-10"
           >
-            <h6>Navigation</h6>
+            <h3>Navigation</h3>
           </SheetTitle>
-          <SheetDescription>
+          <SheetDescription className="text-center text-sm text-sheet-foreground/80">
             Make changes to your profile here.
           </SheetDescription>
         </SheetHeader>
 
-        <div className="flex flex-col items-center justify-center h-full gap-3 my-3">
+        <div className="flex flex-col items-center justify-center h-full gap-3 my-5">
           <Main />
         </div>
         <SheetFooter className="flex flex-col items-center justify-center gap-3">
@@ -92,69 +87,81 @@ export function SheetNavigation({session}: {session: Session | null}) {
                 </div>
 
                 <div className="flex flex-row items-start justify-center gap-5">
-                  <p className="w-fit">
-                    <Link
-                      href={`/${user.role}`}
-                      className="flex items-center justify-center gap-1 w-fit underlined uppercase"
+                  <ul className="flex flex-col items-start justify-center md:flex-row gap-1 md:gap-12">
+                    <li
+                      className={`flex items-start justify-center gap-1 ${
+                        pathname === "/register"
+                          ? "text-primary font-semibold"
+                          : "text-sheet-foreground"
+                      }`}
                     >
-                      <span
-                        className={`flex items-center justify-center gap-1 h-10 max-text-[0.8rem] ${
-                          pathname === `/${user.role}`
-                            ? "text-primary font-semibold"
-                            : "text-sheet-foreground/50"
-                        }`}
+                      <Link
+                        href={`/dashboard`}
+                        className="flex items-center justify-start gap-1 w-fit h-9 underlined uppercase"
                       >
-                        <LayoutDashboardIcon className="size-[0.8rem]" />
-                        <span className="h-5">Dashboard</span>
-                      </span>
-                    </Link>
-                  </p>
-                  <p className="w-fit">
-                    <Link
-                      href={`/${user.role}/profile`}
-                      className="flex items-center justify-center gap-1 w-fit underlined uppercase"
+                        <LayoutDashboardIcon
+                          className="size-[0.9rem]"
+                          strokeWidth={pathname === `/dashboard` ? 3 : 2}
+                        />
+                        Dashboard
+                      </Link>
+                    </li>
+
+                    <li
+                      className={`flex items-start justify-center gap-1 ${
+                        pathname === `/profile` ||
+                        pathname?.endsWith(`/profile`) ||
+                        pathname === `/${user.role}/profile`
+                          ? "text-primary font-semibold"
+                          : "text-sheet-foreground"
+                      }`}
                     >
-                      <span
-                        className={`flex items-center justify-center gap-1 h-10 max-text-[0.8rem] ${
-                          pathname === `/${user.role}/profile`
-                            ? "text-primary font-semibold"
-                            : "text-sheet-foreground/50"
-                        }`}
+                      <Link
+                        href={`/profile`}
+                        className="flex items-center justify-start gap-1 w-fit h-9 underlined uppercase"
                       >
-                        <UserPlus className="size-[0.9rem]" />
-                        <span className="h-5">Profile</span>
-                      </span>
-                    </Link>
-                  </p>
+                        <UserPlus
+                          className="size-[0.9rem]"
+                          strokeWidth={
+                            pathname === `/profile` ||
+                            pathname?.endsWith(`/profile`)
+                              ? 3
+                              : 2
+                          }
+                        />
+                        Profile
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </SheetHeader>
               <LogoutButton />
             </>
           ) : (
             <>
-              <div className="flex flex-col items-center justify-center gap-3 my-3 border-b border-sheet-foreground/30 w-[90%]">
+              <div className="flex flex-col items-center justify-center gap-3 h-14 border-b border-sheet-foreground/30 w-[90%]">
                 <SheetTitle asChild>
-                  <h6 className="uppercase text-sheet-foreground">
+                  <h4 className="uppercase text-sheet-foreground">
                     Your Account
-                  </h6>
+                  </h4>
                 </SheetTitle>
               </div>
 
               <ul className="flex flex-col items-start justify-center md:flex-row gap-1 md:gap-12">
                 <li
-                  className={`flex items-center justify-center gap-1 ${
+                  className={`flex items-start justify-center gap-1 ${
                     pathname === "/login"
                       ? "text-primary font-semibold"
-                      : "text-sheet-foreground/50"
+                      : "text-sheet-foreground"
                   }`}
                 >
                   <Link
                     href={`/login`}
-                    className="flex items-center justify-start gap-1 w-fit underlined uppercase"
+                    className="flex items-center justify-start gap-1 w-fit h-9 underlined uppercase"
                   >
-                    <UserPlus
+                    <PenBoxIcon
                       className="size-[0.9rem]"
-                      strokeWidth={pathname === "/" ? 3 : 2}
+                      strokeWidth={pathname === "/login" ? 3 : 2}
                     />
                     Login
                   </Link>
@@ -163,16 +170,16 @@ export function SheetNavigation({session}: {session: Session | null}) {
                   className={`flex items-start justify-center gap-1 ${
                     pathname === "/register"
                       ? "text-primary font-semibold"
-                      : "text-sheet-foreground/50"
+                      : "text-sheet-foreground"
                   }`}
                 >
                   <Link
                     href={`/register`}
-                    className="flex items-center justify-start gap-1 w-fit underlined uppercase"
+                    className="flex items-center justify-start gap-1 w-fit h-9 underlined uppercase"
                   >
                     <PenBoxIcon
                       className="size-[0.9rem]"
-                      strokeWidth={pathname === "/" ? 3 : 2}
+                      strokeWidth={pathname === "/register" ? 3 : 2}
                     />
                     Register
                   </Link>

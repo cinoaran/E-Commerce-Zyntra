@@ -31,7 +31,7 @@ export const auth = betterAuth({
     requireEmailVerification: true,
     sendResetPassword: async ({user, url}) => {
       const sendResetPasswordUrl = url;
-      console.log("Password reset email sent:", url);
+      // Do not log sensitive reset URLs or tokens in production.
 
       await PasswordReset({
         username: user.name,

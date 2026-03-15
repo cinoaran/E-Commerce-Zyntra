@@ -3,6 +3,7 @@
 import * as React from "react";
 import {Lightbulb} from "lucide-react";
 import {useTheme} from "next-themes";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 
 export function ModeToggle() {
   const {theme, setTheme} = useTheme();
@@ -17,40 +18,58 @@ export function ModeToggle() {
     // Render nothing or a placeholder during SSR
     return (
       <div className="flex flex-col items-center justify-center cursor-pointer">
-        <hr className="bg-foreground mb-0 rotate-90" />
-        <span className="flex items-center justify-center h-11 w-11 mt-4 text-foreground font-bold ring-1 ring-foreground bg-primary rounded-full p-2">
-          <Lightbulb
-            size={24}
-            className="rotate-180 text-[1.8rem] hover:text-primary transition-colors duration-200 ease-in-out"
-          />
-        </span>
+        <div className="flex items-center justify-center icon ring-1 transition-colors duration-200 ease-in-out cursor-pointer z-10">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Lightbulb
+                size={24}
+                className="aspect-square rotate-180 hover:scale-95"
+              />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="font-extrabold">Toggle Theme</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
+        <span className="sr-only">Toggle Theme</span>
       </div>
     );
   }
 
   return (
     <div className="flex flex-col items-center justify-center cursor-pointer">
-      {theme === "dark" ? (
-        <div
-          onClick={() => setTheme("light")}
-          className="flex flex-col items-center justify-center"
-        >
-          <hr className="w-12 h-[2px] bg-foreground mb-1 rotate-90" />
-          <span className="flex items-center justify-center h-12 w-12 mt-2 text-foreground font-bold ring-2 ring-foreground shadow-2xl bg-primary rounded-full p-2">
-            <Lightbulb className="rotate-180 text-lg hover:scale-95" />
-          </span>
-        </div>
-      ) : (
-        <div
-          onClick={() => setTheme("dark")}
-          className="flex flex-col items-center justify-center"
-        >
-          <hr className="w-12 h-[2px] bg-primary mb-1 rotate-90" />
-          <span className="flex items-center justify-center h-12 w-12 mt-2 icon p-1">
-            <Lightbulb className="rotate-180 text-lg hover:scale-95" />
-          </span>
-        </div>
-      )}
+      <Tooltip>
+        <TooltipTrigger asChild>
+          {theme === "dark" ? (
+            <div
+              onClick={() => setTheme("light")}
+              className="flex flex-col items-center justify-center"
+            >
+              <span className="flex items-center justify-center icon ring-1 transition-colors duration-200 ease-in-out cursor-pointer z-10">
+                <Lightbulb
+                  size={24}
+                  className="aspect-square rotate-180 hover:scale-95"
+                />
+              </span>
+            </div>
+          ) : (
+            <div
+              onClick={() => setTheme("dark")}
+              className="flex flex-col items-center justify-center"
+            >
+              <span className="flex items-center justify-center icon ring-1 transition-colors duration-200 ease-in-out cursor-pointer z-10">
+                <Lightbulb
+                  size={24}
+                  className="aspect-square rotate-180 hover:scale-95"
+                />
+              </span>
+            </div>
+          )}
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          <span>Toggle Theme</span>
+        </TooltipContent>
+      </Tooltip>
       <span className="sr-only">Toggle Theme</span>
     </div>
   );

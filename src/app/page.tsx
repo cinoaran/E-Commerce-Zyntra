@@ -1,100 +1,41 @@
+import {Card, CardContent, CardHeader} from "@/components/ui/card";
+import Image from "next/image";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="border-b border-border p-6">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <h1 className="text-3xl font-display font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Zyntra Shop
-          </h1>
-        </div>
-      </header>
-
       <main className="max-w-6xl mx-auto p-6 space-y-8">
         {/* Product Cards */}
         <section>
-          <h2 className="text-2xl font-display font-semibold mb-6">
-            Produktkarten
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="group/card bg-card text-card-foreground rounded-xl border p-6 hover:shadow-2xl transition-all hover:-translate-y-2">
-              <div className="w-24 h-24 bg-linear-to-br from-primary/20 to-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                👕
-              </div>
-              <h3 className="font-display text-xl font-bold mb-2">
-                Premium T-Shirt
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                100% Baumwolle, OEKO-TEX
+          <Card className="backdrop-blur-md border-[0.3px] border-foreground/10 shadow-md shadow-foreground/10 p-6">
+            <CardHeader className="text-2xl font-bold text-primary uppercase mb-4">
+              Welcome to Zyntra!
+            </CardHeader>
+            <CardContent className="space-y-4 relative">
+              <Image
+                src="https://images.unsplash.com/photo-1768586429849-b35799b5cb2d?w=300&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzNzZ8fHxlbnwwfHx8fHw%3D"
+                alt="Zyntra Hero Image"
+                height={500}
+                width={400}
+                className="object-cover"
+                priority
+                style={{width: "auto", height: "auto"}}
+              />
+
+              <p className="text-lg">
+                Zyntra is your all-in-one solution for managing your projects,
+                tasks, and team collaboration. With our intuitive interface and
+                powerful features, you can streamline your workflow and boost
+                productivity.
               </p>
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-display font-bold text-primary">
-                  €29,99
-                </span>
-                <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 rounded-lg font-medium transition-all group-hover:scale-105">
-                  In Warenkorb
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Form Elements */}
-        <section>
-          <h2 className="text-2xl font-display font-semibold mb-6">
-            Formulare
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
-            {/* Input */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium">E-Mail</label>
-              <input
-                type="email"
-                placeholder="deine@email.de"
-                className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
-              />
-            </div>
-
-            {/* Select */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Größe</label>
-              <select className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-              </select>
-            </div>
-
-            {/* Textarea */}
-            <div className="space-y-2 md:col-span-2">
-              <label className="text-sm font-medium">Nachricht</label>
-              <textarea
-                rows={4}
-                placeholder="Deine Nachricht..."
-                className="w-full px-4 py-3 bg-background border border-input rounded-lg focus:ring-2 focus:ring-ring focus:border-transparent resize-vertical min-h-25"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Buttons */}
-        <section>
-          <h2 className="text-2xl font-display font-semibold mb-6">Buttons</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-2xl">
-            <button className="w-full h-14 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl transition-all">
-              Primary
-            </button>
-            <button className="w-full h-14 bg-secondary hover:bg-secondary/80 text-secondary-foreground rounded-xl font-medium transition-all">
-              Secondary
-            </button>
-            <button className="w-full h-14 border border-input hover:bg-accent/50 text-foreground rounded-xl font-medium transition-all">
-              Outline
-            </button>
-            <button className="w-full h-14 bg-destructive hover:bg-destructive/90 text-destructive-foreground rounded-xl font-medium transition-all">
-              Delete
-            </button>
-          </div>
+              <p className="text-lg mt-4">
+                Whether you&apos;re a freelancer, a small business, or a large
+                enterprise, Zyntra has the tools you need to succeed. Sign up
+                today and experience the difference!
+              </p>
+            </CardContent>
+          </Card>
         </section>
       </main>
     </div>

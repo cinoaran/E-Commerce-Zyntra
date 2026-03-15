@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="mx-auto text-foreground border-t-[0.3px] border-foreground/10">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 py-10 place-items-center grid-wrap px-10">
-        <div className="flex flex-col items-center justify-center md:items-start gap-2 md:min-w-[250px] border-b-[0.3px] border-primary  hover:border-primary/20 pb-8">
+    <footer className="mx-auto text-foreground z-50 bg-background">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 py-10 place-items-center grid-wrap px-10 backdrop-blur-lg border-t-[0.3px] border-t-foreground/10">
+        <div className="flex flex-col items-center justify-center md:items-start gap-2 md:min-w-62.5 border-b-[0.3px] border-primary  hover:border-primary/20 pb-8">
           <h3 className="mb-4 font-semibold uppercase">Products</h3>
           <p className="underlined">
             <Link href="#!">Angular</Link>
@@ -21,7 +21,7 @@ const Footer = () => {
             <Link href="#!">Laravel</Link>
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center md:items-start gap-2 md:min-w-[250px] border-b-[0.3px] border-primary  hover:border-primary/20 pb-8">
+        <div className="flex flex-col items-center justify-center md:items-start gap-2 md:min-w-62.5 border-b-[0.3px] border-primary  hover:border-primary/20 pb-8">
           <h3 className="mb-4 text-center font-semibold uppercase">
             Useful links
           </h3>
@@ -38,7 +38,7 @@ const Footer = () => {
             <Link href="#!">Help</Link>
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center md:items-start gap-5 md:min-w-[140px] border-b-[0.3px] border-primary hover:border-primary/20 pb-8">
+        <div className="flex flex-col items-center justify-center md:items-start gap-5 md:min-w-35 border-b-[0.3px] border-primary hover:border-primary/20 pb-8">
           <h3 className="mb-4 font-semibold uppercase">Contact</h3>
           <p className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 flex-wrap">
             <MapPin size={20} />

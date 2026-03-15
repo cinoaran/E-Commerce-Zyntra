@@ -1,4 +1,5 @@
 "use client";
+import {isDisposableEmail} from "@/lib/disposable-email-check"; // Importiere die Hilfsfunktion
 import {FieldValues, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {
@@ -50,20 +51,25 @@ const Registerform = () => {
   const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
     setError("");
     setSuccess("");
+    // Disposable-Email-Prüfung
+    if (isDisposableEmail(data.email)) {
+      setError("Wegwerf-E-Mail-Adressen sind nicht erlaubt.");
+      return;
+    }
     await authClient.signUp.email(
       {
         email: data.email,
         password: data.password,
         name: data.name,
-        callbackURL: "/email-verified",
+        callbackURL: `/verify-otp?email=${encodeURIComponent(data.email)}`, // ← DAS IST ALLES!
       },
       {
         onRequest: () => {
           setIsPending(true);
         },
-        onSuccess: () => {
-          setSuccess("Check out your email for your verification link.");
+        onSuccess: async () => {
           form.reset();
+          setSuccess("Check your email for the verification code.");
         },
         onError: (ctx) => {
           setError(ctx.error.message ?? "Something went wrong.");
@@ -99,7 +105,7 @@ const Registerform = () => {
                   type="text"
                   placeholder="Max Muster"
                   {...field}
-                  className="w-full border-b-[0.3px] rounded-none outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
+                  className="w-full border-b-[0.3px] rounded-md outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
                 />
               </FormControl>
               <FormMessage />
@@ -126,7 +132,7 @@ const Registerform = () => {
                   type="email"
                   placeholder="max@muster.de"
                   {...field}
-                  className="w-full border-b-[0.3px] rounded-none outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
+                  className="w-full border-b-[0.3px] rounded-md outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
                 />
               </FormControl>
               <FormMessage />
@@ -151,7 +157,7 @@ const Registerform = () => {
                 <PasswordInput
                   disabled={isPending}
                   {...field}
-                  className="w-full border-b-[0.3px] rounded-none outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
+                  className="w-full border-b-[0.3px] rounded-md outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
                 />
               </FormControl>
               <FormMessage />
@@ -176,7 +182,7 @@ const Registerform = () => {
                 <PasswordInput
                   disabled={isPending}
                   {...field}
-                  className="w-full border-b-[0.3px] rounded-none outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-secondary/20 py-6 text-[0.6rem] md:text-lg"
+                  className="w-full border-b-[0.3px] rounded-md outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-secondary/20 py-6 text-[0.6rem] md:text-lg"
                 />
               </FormControl>
               <FormMessage />
@@ -188,7 +194,7 @@ const Registerform = () => {
         <Button
           type="submit"
           disabled={isPending || !form.formState.isValid}
-          variant={"outline"}
+          variant={"default"}
           className="rounded-md w-full bg-primary text-primary-foreground text-sm md:text-md cursor-pointer py-6 mt-5 animate-in transition-all duration-200 ease-in-out hover:shadow-sm shadow-sm hover:shadow-accent-foreground/50 focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2 focus-visible:ring-offset-background uppercase"
         >
           {isPending || !form.formState.isValid ? "Waiting..." : "Register now"}

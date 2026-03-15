@@ -34,19 +34,19 @@ export const VerifyUserEmail = ({
       <Preview>{previewText}</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white px-2 font-sans">
-          <Container className="mx-auto my-[40px] max-w-[465px] p-[20px]">
-            <Heading className="mx-0 my-[30px] text-center font-normal text-[24px] text-black">
+          <Container className="mx-auto my-10 max-w-116.25 p-5">
+            <Heading className="mx-0 my-7.5 text-center font-normal text-[24px] text-black">
               Verify your email on{" "}
               <p className="text-[24px] font-normal text-black">
                 <strong className="uppercase">{appName}</strong>
               </p>
             </Heading>
-            <Text className="text-[14px] text-black leading-[24px]">
+            <Text className="text-[14px] text-black leading-6">
               Hello <span className="font-semibold capitalize">{username}</span>
               , We provide you with a simple way to verify your email address.
               Click the button below to get access to your account.
             </Text>
-            <Section className="mt-[32px] mb-[32px] text-center">
+            <Section className="mt-8 mb-8 text-center">
               <Button
                 className="bg-[#000000] px-5 py-3 text-center font-semibold text-[12px] text-white w-full"
                 href={verificationUrl}
@@ -54,14 +54,14 @@ export const VerifyUserEmail = ({
                 Verify your email
               </Button>
             </Section>
-            <Text className="text-[14px] text-black leading-[24px]">
-              <strong>Or, copy and paste this URL into your browser:</strong>{" "}
+            <Text className="text-[14px] text-black leading-6">
+              <strong>Or, copy and paste this URL into your browser:</strong>
               <Link href={verificationUrl} className="text-blue-600">
                 {verificationUrl}
               </Link>
             </Text>
-            <Hr className="mx-0 my-[26px] w-full border border-[#eaeaea] border-solid" />
-            <Text className="text-[#666666] text-[12px] leading-[24px]">
+            <Hr className="mx-0 my-6.5 w-full border border-[#eaeaea] border-solid" />
+            <Text className="text-[#666666] text-[12px] leading-6">
               This email was sent to you by {appName}. If you did not request
               this email, please ignore it.
             </Text>

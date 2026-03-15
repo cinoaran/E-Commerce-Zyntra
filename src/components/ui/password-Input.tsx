@@ -2,8 +2,7 @@ import * as React from "react";
 import {EyeIcon, EyeOffIcon} from "lucide-react";
 import {Input} from "./input";
 
-export interface PasswordInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface PasswordInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   suffix?: React.ReactNode;
 }
 
@@ -17,15 +16,15 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
             showPassword ? (
               <EyeIcon
                 aria-label="Show password"
-                size={14}
-                className="text-secondary-foreground select-none cursor-pointer hover:text-foreground/20"
+                size={16}
+                className="text-primary select-none cursor-pointer hover:text-foreground/20"
                 onClick={() => setShowPassword(false)}
               />
             ) : (
               <EyeOffIcon
                 aria-label="Close password"
-                size={14}
-                className="text-secondary-foreground select-none cursor-pointer hover:text-foreground/20"
+                size={16}
+                className="text-primary select-none cursor-pointer hover:text-foreground/20"
                 onClick={() => setShowPassword(true)}
               />
             )
@@ -38,7 +37,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
         />
       </div>
     );
-  }
+  },
 );
 PasswordInput.displayName = "PasswordInput";
 

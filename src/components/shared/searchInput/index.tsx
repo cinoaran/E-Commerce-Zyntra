@@ -37,7 +37,7 @@ const SearchInput = () => {
       <Input
         type="search"
         placeholder="Search..."
-        className="bg-foreground/5 placeholder:italic placeholder:text-foreground/50 webkit-search-cancel-button:appearance-none pr-10"
+        className="bg-foreground placeholder:italic placeholder:text-foreground/50 webkit-search-cancel-button:appearance-none border-border pr-10"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

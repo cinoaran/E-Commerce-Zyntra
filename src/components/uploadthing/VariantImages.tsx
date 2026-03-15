@@ -1,4 +1,4 @@
-import {useUploadThing} from "@/lib/uploadthing/uploadthing";
+import {useUploadThing} from "@/uploadthing/uploadthing";
 import {useState, useRef} from "react";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
@@ -70,7 +70,6 @@ export default function VariantImages({
             >
               <X size={16} />
             </Button>
-            {/* For update, you can add another upload button here to replace the image */}
           </div>
         ))}
       </div>

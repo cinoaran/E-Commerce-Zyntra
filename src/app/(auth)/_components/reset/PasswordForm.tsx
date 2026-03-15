@@ -102,7 +102,7 @@ function ResetPasswordContent() {
                 <PasswordInput
                   disabled={isPending}
                   {...field}
-                  className="w-full border-b-[0.3px] rounded-none outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
+                  className="w-full border-b-[0.3px] rounded-md outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
                 />
               </FormControl>
               <FormMessage />
@@ -127,7 +127,7 @@ function ResetPasswordContent() {
                 <PasswordInput
                   disabled={isPending}
                   {...field}
-                  className="w-full border-b-[0.3px] rounded-none outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
+                  className="w-full border-b-[0.3px] rounded-md outline-none focus-visible:ring-transparent focus-visible:border-b-[0.3px] border-primary-foreground/30 py-5 text-[0.6rem] md:text-lg"
                 />
               </FormControl>
               <FormMessage />
@@ -139,8 +139,8 @@ function ResetPasswordContent() {
         <Button
           type="submit"
           disabled={isPending || !form.formState.isValid}
-          variant="outline"
-          className="rounded-md w-full text-sm text-primary-foreground md:text-md cursor-pointer py-6 mt-5 animate-in transition-all duration-200 ease-in-out hover:shadow-sm shadow-sm hover:shadow-accent-foreground/50 focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2 focus-visible:ring-offset-background uppercase"
+          variant="default"
+          className="rounded-md w-full bg-primary text-primary-foreground text-sm md:text-md cursor-pointer py-6 mt-5 animate-in transition-all duration-200 ease-in-out hover:shadow-sm shadow-sm hover:shadow-accent-foreground/50 focus-visible:ring-2 focus-visible:ring-link focus-visible:ring-offset-2 focus-visible:ring-offset-background uppercase"
         >
           {isPending || !form.formState.isValid
             ? "Waiting..."

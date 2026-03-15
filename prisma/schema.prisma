@@ -38,6 +38,8 @@ model User {
   banned        Boolean   @default(false)
   banReason     String?
   banExpires    Int? /// Unix timestamp for ban expiration
+  otpCode       String?
+  otpExpires    DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
@@ -49,7 +51,7 @@ model User {
 model Session {
   id             String   @id @default(cuid()) @map("id")
   userId         String
-  token          String
+  token          String   @unique
   expiresAt      DateTime
   ipAddress      String?
   userAgent      String?
