@@ -12,7 +12,9 @@ export default async function TransactionsPage() {
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold">Transactions</h1>
-      <p className="mt-4">(Placeholder) No transactions available.</p>
+      <p className="mt-4">
+        (Placeholder) No transactions available. for {session.user.name}
+      </p>
     </div>
   );
 }

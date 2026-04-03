@@ -10,19 +10,19 @@ import {TooltipProvider} from "@/components/ui/tooltip";
 
 // NEUE Google Fonts als CSS-Variablen
 
-export const montserrat = Montserrat({
+const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-export const openSans = Open_Sans({
+const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
 
-export const comfortaa = Comfortaa({
+const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
   subsets: ["latin"],
   weight: ["400", "700"],

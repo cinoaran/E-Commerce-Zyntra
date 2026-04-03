@@ -13,7 +13,6 @@ export async function GET(req: Request) {
         `dashboard/route: getSessionOnce ${afterSession - start}ms; url parse ${afterUrl - afterSession}ms; total so far ${afterUrl - start}ms`,
       );
     }
-    console.log("Session", session);
 
     if (!session || !session.user || !session.user.id) {
       return new Response(null, {
