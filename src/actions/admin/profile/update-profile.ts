@@ -3,7 +3,8 @@ import prisma from "@/lib/prisma";
 import {z} from "zod";
 import {ProfileSchema} from "@/zod-schemas/ProfileSchema";
 import {headers} from "next/headers";
-import {getSessionOnce} from "@/lib/sessionCache";
+import {ensureAndRequire} from "@/acl/acl";
+import type {Session as AuthSession} from "@/lib/auth";
 
 export async function UpdateProfile(data: z.infer<typeof ProfileSchema>) {
   const safeProfile = ProfileSchema.safeParse(data);
@@ -11,10 +12,12 @@ export async function UpdateProfile(data: z.infer<typeof ProfileSchema>) {
     return {error: "Invalid data"};
   }
 
-  const session = await getSessionOnce({headers: await headers()});
-
-  if (!session) {
-    return {error: "Unauthorized"};
+  let session: AuthSession;
+  try {
+    // Only admins (or roles with user:manage) may update profile fields like role/banned
+    session = await ensureAndRequire({headers: await headers()}, "user:manage");
+  } catch (err) {
+    return {error: err instanceof Error ? err.message : "Forbidden"};
   }
 
   try {
@@ -34,6 +37,8 @@ export async function UpdateProfile(data: z.infer<typeof ProfileSchema>) {
     return {success: "User updated successfully"};
   } catch (error) {
     console.log(error);
-    return {error: "Something went wrong"};
+    return {
+      error: error instanceof Error ? error.message : "Something went wrong",
+    };
   }
 }

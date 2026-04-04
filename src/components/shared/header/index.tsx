@@ -2,13 +2,13 @@ import {APP_NAME, APP_NAME_SECOND} from "@/constants";
 import Link from "next/link";
 import React from "react";
 import {SheetNavigation} from "@/components/shared/sheet";
-import {getSessionOnce} from "@/lib/sessionCache";
+import {ensureSession} from "@/acl/acl";
 
 import {ModeToggle} from "@/components/shared/mode/ToggleTheme";
 import SearchInput from "@/components/shared/searchInput";
 import {headers} from "next/headers";
 const Header = async () => {
-  const rawSession = await getSessionOnce({headers: await headers()});
+  const rawSession = await ensureSession({headers: await headers()});
 
   const session = rawSession
     ? {

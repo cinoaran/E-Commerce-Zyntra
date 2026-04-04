@@ -1,4 +1,4 @@
-// Beispiel: zentrale Role->Permission Map
+// Central role -> permissions mapping
 export const rolePermissions: Record<string, string[]> = {
   guest: [],
   customer: ["order:create", "order:view:own"],
@@ -23,7 +23,15 @@ export const rolePermissions: Record<string, string[]> = {
   developer: ["deploy", "featureflags:toggle"],
 };
 
-// Tipp: diese Datei nur als Vorlage verwenden. In Produktion an eine
-// zentrale Stelle auslagern oder dynamisch aus DB/Config laden.
-
 export type Role = keyof typeof rolePermissions;
+
+// Helper to check if a role has a permission
+export function roleHasPermission(
+  role: string | undefined,
+  permission: string,
+) {
+  if (!role) return false;
+  const perms = rolePermissions[role as keyof typeof rolePermissions] || [];
+  if (perms.includes("*")) return true;
+  return perms.includes(permission);
+}

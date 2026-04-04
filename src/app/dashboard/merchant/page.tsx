@@ -1,10 +1,10 @@
 import {headers} from "next/headers";
 import {redirect} from "next/navigation";
-import {getSessionOnce} from "@/lib/sessionCache";
+import {ensureSession} from "@/acl/acl";
 
 export default async function MerchantDashboardPage() {
   const hdrs = await headers();
-  const session = await getSessionOnce({headers: hdrs});
+  const session = await ensureSession({headers: hdrs});
 
   if (!session || !session.user || !session.user.id) {
     redirect("/login");

@@ -1,6 +1,5 @@
 import {createUploadthing, type FileRouter} from "uploadthing/next";
-import {getSessionOnce} from "@/lib/sessionCache";
-/* import {prisma} from "@/lib/prisma"; // Assuming you have a database connection */
+import {ensureSession} from "@/acl/acl";
 
 const f = createUploadthing();
 
@@ -11,7 +10,7 @@ export const ourFileRouter = {
   })
     .middleware(async ({req}) => {
       // Get session using the request object from the middleware
-      const session = await getSessionOnce({headers: req.headers});
+      const session = await ensureSession({headers: req.headers});
 
       // If you throw, the user will not be able to upload
       if (!session?.user.id) throw new Error("Unauthorized");
